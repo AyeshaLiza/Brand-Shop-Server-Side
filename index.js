@@ -80,16 +80,6 @@ async function run() {
       const result = await cartCollection.deleteOne(query)
       res.send(result)
     })
-    // user APIs
-    app.post('/user', async (req, res) => {
-      const user = req.body;
-      console.log(user);
-      const result = await userCollection.insertOne(user);
-      res.send(result);
-    })
-    // 
-    
-   
     app.put('/product/:id', async(req, res) =>{
       const id = req.params.id;
       console.log(id);
@@ -110,6 +100,17 @@ async function run() {
       const result = await productCollection.updateOne(filter,  product, options);
       res.send(result)
     })
+    // user APIs
+    app.post('/user', async (req, res) => {
+      const user = req.body;
+      console.log(user);
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    })
+    // 
+    
+   
+   
 
       app.patch('/user', async(req, res) =>{
         const user = req.body;
