@@ -98,6 +98,7 @@ async function run() {
         discount: updatedProduct.discount
       }}
       const result = await productCollection.updateOne(filter,  product, options);
+
       res.send(result)
     })
     // user APIs
