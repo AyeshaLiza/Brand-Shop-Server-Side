@@ -2,9 +2,9 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 
+
 const app = express()
 const port = process.env.PORT || 4000
-
 
 app.use(cors());
 app.use(express.json());
@@ -74,6 +74,12 @@ async function run() {
       res.send(result) 
     }) 
     
+    app.delete('/cart/:id', async(req, res) =>{
+      const id = req.params.id;
+      const query = {_id: id}
+      const result = await cartCollection.deleteOne(query)
+      res.send(result)
+    })
     // user APIs
     app.post('/user', async (req, res) => {
       const user = req.body;
@@ -83,12 +89,7 @@ async function run() {
     })
     // 
     
-    app.delete('/cart/:id', async(req, res) =>{
-      const id = req.params.id;
-      const query = {_id: id}
-      const result = await cartCollection.deleteOne(query)
-      res.send(result)
-    })
+   
     app.put('/product/:id', async(req, res) =>{
       const id = req.params.id;
       console.log(id);
